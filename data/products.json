@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "Maknum saber",
+    "price": 25000,
+    "stock": 100,
+    "description": "Coklat Belgia premium",
+    "userId": 1
+  },
+  {
+    "id": 2,
+    "name": "Gurun Piton",
+    "price": 15000,
+    "stock": 50,
+    "description": "Coklat sepanjang upil",
+    "userId": 1
+  }
+]
