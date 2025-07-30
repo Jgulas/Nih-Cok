@@ -9,17 +9,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      orderId: {
-        type: Sequelize.INTEGER
-      },
-      productId: {
-        type: Sequelize.INTEGER
-      },
       quantity: {
         type: Sequelize.INTEGER
       },
       price: {
         type: Sequelize.INTEGER
+      },
+      status: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
