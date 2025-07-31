@@ -1,16 +1,37 @@
 [
   {
-    "id": 1,
-    "name": "Maknum saber",
+    "name": "Dark Chocolate Bar",
     "price": 25000,
     "stock": 100,
-    "description": "Coklat Belgia premium"
+    "description": "Rich and bittersweet dark chocolate made with 70% cocoa.",
+    "imageUrl": "https://www.ghirardelli.com/assets/images/products/chocolate-bars/intense-dark-72-bar.png"
   },
   {
-    "id": 2,
-    "name": "Gurun Piton",
-    "price": 15000,
+    "name": "Milk Chocolate with Hazelnuts",
+    "price": 30000,
     "stock": 50,
-    "description": "Coklat sepanjang upil"
+    "description": "Creamy milk chocolate packed with crunchy hazelnuts.",
+    "imageUrl": "https://www.chocolove.com/images/product/strong-dark-70-percent-cocoa-target-bar.jpg"
+  },
+  {
+    "name": "White Chocolate Truffles",
+    "price": 40000,
+    "stock": 30,
+    "description": "Smooth white chocolate truffles with a creamy center.",
+    "imageUrl": "https://edelweisschocolates.com/wp-content/uploads/2020/02/dark-chocolate-bar.jpg"
+  },
+  {
+    "name": "Matcha Chocolate Bites",
+    "price": 35000,
+    "stock": 70,
+    "description": "A fusion of matcha green tea and white chocolate.",
+    "imageUrl": "https://www.lindtusa.com/media/wysiwyg/dark-chocolate-excellence-78-cocoa-bar.jpg"
+  },
+  {
+    "name": "Spicy Chili Chocolate",
+    "price": 27000,
+    "stock": 40,
+    "description": "Dark chocolate with a bold kick of chili spice.",
+    "imageUrl": "https://www.hilliardscandy.com/media/catalog/product/cache/.../extra-dark-chocolate-bar.jpg"
   }
 ]
