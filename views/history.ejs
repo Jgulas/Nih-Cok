@@ -36,7 +36,6 @@
         color: white;
         padding: 10px 15px;
         border-radius: 5px;
-        white-space: nowrap;
       }
 
       .add-button a:hover {
@@ -93,59 +92,31 @@
     <div class="container">
       <h1>List Product</h1>
       <hr />
-
+      <br />
+      
       <table>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Stock</th>
-            <th>Description</th>
+            <th>Product Name</th>
             <th>Image</th>
-            <th>Action</th>
+            <th>Price</th>
+            <th>Order Status</th>
           </tr>
         </thead>
-        <tbody>
-          <% product.forEach(el => { %>
-          <tr>
-            <td><%= el.name %></td>
-            <td>Rp<%= el.price.toLocaleString('id-ID') %></td>
-            <td><%= el.stock %></td>
-            <td><%= el.description %></td>
-            <td>
-              <img
-                src="<%= el.imageUrl %>"
-                alt="image"
-                height="80"
-                width="80"
-              />
-            </td>
-            <td class="action-buttons">
-              <form action="/create-order/<%= userid %>/<%= el.id %>" method="POST">
-                <input
-                  type="text"
-                  name="price"
-                  id="price"
-                  hidden
-                  value="<%= el.price %>"
-                />
-                <input
-                  type="text"
-                  name="stock"
-                  id="stock"
-                  hidden
-                  value="<%= el.stock %>"
-                />
-
-                <button type="submit">
-                  Buy
-                </button>
-              </form>
-            </td>
-          </tr>
-          <% }) %>
-        </tbody>
+        <% order.forEach(el => { %>
+            <tr>
+                <td><%= el.Product.name %></td>
+                
+                <td>
+                    <img src=" <%= el.Product.imageUrl %>" alt="<%= el.Product.imageUrl %>" width="100px" height="100px">
+                </td>
+                <td><%= el.price %></td>
+                <td><%= el.status %></td>
+            </tr>
+        <% }) %>
       </table>
+
+    
     </div>
   </body>
 </html>
