@@ -3,14 +3,12 @@
     "id": 1,
     "name": "Admin Satu",
     "email": "admin@mail.com",
-    "password": "hashedpassword123",
-    "role": "admin"
+    "password": "hashedpassword123"
   },
   {
     "id": 2,
     "name": "Customer Dua",
     "email": "customer@mail.com",
-    "password": "hashedpassword456",
-    "role": "customer"
+    "password": "hashedpassword456"
   }
 ]

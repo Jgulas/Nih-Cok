@@ -10,7 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       phone: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       birthDate: {
         type: Sequelize.DATE

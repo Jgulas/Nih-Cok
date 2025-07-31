@@ -1,14 +1,16 @@
 [
   {
     "id": 1,
-    "userId": 1,
+    "UserId": 1,
     "phone": "08123456789",
-    "birthDate": "1990-01-01"
+    "birthDate": "1990-01-01",
+    "role": "customer"
   },
   {
     "id": 2,
-    "userId": 2,
+    "UserId": 2,
     "phone": "08198765432",
-    "birthDate": "1995-05-15"
+    "birthDate": "1995-05-15",
+    "role": "admin"
   }
 ]
