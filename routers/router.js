@@ -33,12 +33,14 @@ router.get('/profile', Controller.profilePage);
 router.get('/profile/edit', Controller.editProfileForm);
 router.post('/profile/edit', Controller.saveEditProfile);
 
-router.get('/products', Controller.productsForBuyer)
+router.get('/product-list/:userid', Controller.productsForBuyer)
 router.get('/products/add', Controller.addProductsItems)
 router.post('/products/add', Controller.saveProductsItems)
 router.get('/products/:id', Controller.detailProduct)
 router.post('/products/:id', Controller.saveDetailProduct)
 router.get('/products/delete/:id', Controller.deleteProduct)
+router.post('/create-order/:userid/:productid', Controller.createOrder)
+router.get('/order-history/:userid', Controller.showOrder)
 
 
 module.exports = router;

@@ -2,6 +2,7 @@ const { User, Profile, Product, OrderItem } = require("../models");
 
 // const sequelize = require("sequelize");
 const bcrypt = require("bcryptjs");
+const product = require("../models/product");
 
 // const user = require('../models/user');
 class Controller {
@@ -27,8 +28,13 @@ class Controller {
   static async postLogin(req, res) {
     try {
       const { name, password } = req.body;
-      User.findOne({ where: { name } }).then((user) => {
-        console.log(user, "ini userr");
+      User.findOne({ where: { name } }).then(async (user) => {
+        let userProfile = await Profile.findOne({
+          where: {
+            UserId: user.id,
+          },
+        });
+        // console.log(userProfile, 'iniuseer profile');
 
         if (user) {
           const isValidPassword = bcrypt.compareSync(password, user.password);
@@ -39,7 +45,7 @@ class Controller {
             if (user.role === "admin") {
               return res.redirect("/main");
             } else {
-              return res.redirect("/products");
+              return res.redirect(`/product-list/${userProfile.id}`);
             }
           } else {
             const fail = "Invalid Usernam/Password";
@@ -243,8 +249,55 @@ class Controller {
 
   static async productsForBuyer(req, res) {
     try {
+      const userid = req.params.userid;
       let product = await Product.findAll();
-      res.render("listProductBuyer", { product });
+      res.render("listProductBuyer", { product, userid });
+    } catch (error) {
+      console.log(error);
+      res.send(error);
+    }
+  }
+
+  static async createOrder(req, res) {
+    try {
+      const body = req.body;
+      const userid = req.params.userid;
+      const productid = req.params.productid;
+      // console.log(body, req.params);
+      await OrderItem.create({
+        price: body.price,
+        quantity: 1,
+        UserProfileId: userid,
+        ProductId: productid,
+        status: "Purchased",
+      });
+      res.redirect(`/order-history/${userid}`);
+    } catch (error) {
+      console.log(error);
+      res.send(error);
+    }
+  }
+
+  static async showOrder(req, res) {
+    try {
+      const id = req.params.userid;
+      let order = await OrderItem.findAll(
+        {
+          include: [
+            {
+              model: Product,
+            },
+          ],
+        },
+        {
+          where: {
+            UserProfileId: +id,
+          },
+        }
+      );
+      console.log(order);
+
+      res.render("history", {order});
     } catch (error) {
       console.log(error);
       res.send(error);
