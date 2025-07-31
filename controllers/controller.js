@@ -129,6 +129,7 @@ class Controller {
       res.send(error);
     }
   }
+  
   static async x(req, res) {
     try {
       res.send('x')
