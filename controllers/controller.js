@@ -125,6 +125,58 @@ class Controller {
     }
   }
 
+static async profilePage(req, res) {
+    try {
+      const userId = req.session.userId;
+      const user = await User.findByPk(userId, {
+        include: Profile
+      });
+
+      res.render('profile', { user });
+    } catch (error) {
+      console.log(error);
+      res.send(error);
+    }
+  }//done
+
+  static async editProfileForm(req, res) {
+    try {
+      const userId = req.session.userId;
+      const user = await User.findByPk(userId, {
+        include: Profile
+      });
+
+      res.render('editProfile', { user });
+    } catch (error) {
+      console.log(error);
+      res.send(error);
+    }
+  }//done
+
+  static async saveEditProfile(req, res) {
+    try {
+      const userId = req.session.userId;
+      const { name, email, phone, birthDate } = req.body;
+
+      // Update Users table
+      await User.update(
+        { name },
+        { where: { id: userId } }
+      );
+
+      // Update Profiles table
+      await Profile.update(
+        { email, phone, birthDate },
+        { where: { UserId: userId } }
+      );
+
+      res.redirect('/profile');
+    } catch (error) {
+      console.log(error);
+      res.send(error);
+    }
+  }//blm bisa ke save
+  
   static async test(req, res) {
     try {
       res.render('test')

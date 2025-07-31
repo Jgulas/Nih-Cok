@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profil Saya</title>
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body style="background-color: #f9f9f9; font-family: sans-serif; margin: 0; padding: 0;">
+
+  <%- include('./partials/nav') %>
+
+  <div style="max-width: 600px; margin: 40px auto; background-color: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+    <h2 style="text-align: center; color: #333;">Profil Saya</h2>
+    <p><strong>Nama:</strong> <%= user.name %></p>
+    <p><strong>Role:</strong> <%= user.role %></p>
+
+    <% if (user.Profile) { %>
+      <p><strong>Email:</strong> <%= user.email %></p>
+      <p><strong>No HP:</strong> <%= user.Profile.phone %></p>
+      <p><strong>Alamat:</strong> <%= user.Profile.address %></p>
+    <% } else { %>
+      <p><em>Lengkapi Data dirimu</em></p>
+    <% } %>
+
+    <div style="text-align: center; margin-top: 20px;">
+      <a href="/profile/edit">
+        <button style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 6px; cursor: pointer;">
+          ✏️ Edit Profil
+        </button>
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>
