@@ -30,6 +30,9 @@ router.get('/main', Controller.listAllProducts);
 // router.get('/product/edit')
 
 router.get('/profile', Controller.profilePage);
+router.get('/profile/add', Controller.showAddProfileForm);
+router.post('/profile/add', Controller.postAddProfile);
+
 router.get('/profile/edit', Controller.editProfileForm);
 router.post('/profile/edit', Controller.saveEditProfile);
 
