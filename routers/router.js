@@ -27,10 +27,11 @@ router.use(isLoggedIn);// buat blokir harus login dulu
 
 //Main menu
 router.get('/main', Controller.listAllProducts);
+// router.get('/product/edit')
 
 router.get('/products', Controller.listAllProducts)
-router.get('/products/add', isAdmin, Controller.addProductsItems)
-router.post('/products/add',isAdmin, Controller.saveProductsItems)
+router.get('/products/add', Controller.addProductsItems)
+router.post('/products/add', Controller.saveProductsItems)
 router.get('/products/:id', Controller.detailProduct)
 
 module.exports = router;
