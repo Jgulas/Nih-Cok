@@ -221,6 +221,22 @@ static async profilePage(req, res) {
       res.send(error);
     }
   }
+
+  static async deleteProduct(req, res) {
+    try {
+      const id = req.params.id
+      // console.log(id);
+      await Product.destroy({
+        where: {
+          id: +id
+        }
+      })
+      res.redirect('/products')
+    } catch (error) {
+      console.log(error);
+      res.send(error)
+    }
+  }
 }
 
 module.exports = Controller;
