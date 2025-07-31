@@ -1,11 +1,29 @@
-<div>
-    <button>
-        <a href="">Home</a>
-    </button>
-    <!-- <button>
-        <a href="">Profile</a>
-    </button> -->
-    <button>
-        <a href="">Product</a>
-    </button>
+<style>
+  .navbar {
+    background-color: #4e342e;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .navbar a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 8px 16px;
+    background-color: #6d4c41;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+  }
+
+  .navbar a:hover {
+    background-color: #8d6e63;
+  }
+</style>
+
+<div class="navbar">
+  <a href="/main">Home</a>
+  <a href="/profile">Profile</a>
+  <a href="/products">Product</a>
 </div>
