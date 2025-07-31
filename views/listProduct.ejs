@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,11 @@
     <%- include('./partials/nav.ejs') %>
     <h1>List Product</h1>
     <hr>
+
+    <button>
+        <a href="/products/add">Add Product</a>
+    </button>
+    <br><br>
 
     <table border="8">
         <tr>
@@ -40,4 +45,141 @@
         <% }) %>
     </table>
 </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>List Product</title>
+    <style>
+      body {
+        background-color: #fdf6f0;
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #fff3e6;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+        color: #5c3210;
+      }
+
+      .add-button {
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+
+      .add-button a {
+        text-decoration: none;
+        background-color: #8b4513;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+      }
+
+      .add-button a:hover {
+        background-color: #5c3210;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+
+      th,
+      td {
+        text-align: left;
+        padding: 12px;
+        border: 1px solid #ccc;
+      }
+
+      th {
+        background-color: #d9a066;
+        color: white;
+      }
+
+      tr:nth-child(even) {
+        background-color: #fffaf3;
+      }
+
+      img {
+        border-radius: 5px;
+        object-fit: cover;
+      }
+
+      .action-buttons button {
+        margin-right: 5px;
+      }
+
+      .action-buttons a {
+        text-decoration: none;
+        padding: 6px 10px;
+        background-color: #8b4513;
+        color: white;
+        border-radius: 4px;
+      }
+
+      .action-buttons a:hover {
+        background-color: #5c3210;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('./partials/nav.ejs') %>
+
+    <div class="container">
+      <h1>List Product</h1>
+      <hr />
+      <br />
+      <div class="add-button">
+        <a href="/products/add">Add Product</a>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% product.forEach(el => { %>
+          <tr>
+            <td><%= el.name %></td>
+            <td>Rp<%= el.price.toLocaleString('id-ID') %></td>
+            <td><%= el.stock %></td>
+            <td><%= el.description %></td>
+            <td>
+              <img
+                src="<%= el.imageUrl %>"
+                alt="image"
+                height="80"
+                width="80"
+              />
+            </td>
+            <td class="action-buttons">
+              <a href="/products/<%= el.id %>">Edit</a><br /><br />
+              <a href="/products/delete/<%= el.id %>">Delete</a>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </body>
 </html>
