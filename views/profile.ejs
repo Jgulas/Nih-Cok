@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Profil Saya</title>
-  <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body style="background-color: #f9f9f9; font-family: sans-serif; margin: 0; padding: 0;">
 
@@ -15,9 +14,9 @@
     <p><strong>Role:</strong> <%= user.role %></p>
 
     <% if (user.Profile) { %>
-      <p><strong>Email:</strong> <%= user.email %></p>
+      <p><strong>Email:</strong> <%= user.Profile.email %></p>
       <p><strong>No HP:</strong> <%= user.Profile.phone %></p>
-      <p><strong>Alamat:</strong> <%= user.Profile.address %></p>
+      <p><strong>Tanggal Lahir:</strong> <%= user.Profile.birthDate %></p>
     <% } else { %>
       <p><em>Lengkapi Data dirimu</em></p>
     <% } %>
