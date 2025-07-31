@@ -28,13 +28,19 @@ class Controller {
     try {
       const { name, password } = req.body;
       User.findOne({ where: { name } }).then((user) => {
+        console.log(user, "ini userr");
+
         if (user) {
           const isValidPassword = bcrypt.compareSync(password, user.password);
 
           if (isValidPassword) {
             req.session.userId = user.id;
             req.session.userRole = user.role;
-            return res.redirect("/main");
+            if (user.role === "admin") {
+              return res.redirect("/main");
+            } else {
+              return res.redirect("/products");
+            }
           } else {
             const fail = "Invalid Usernam/Password";
             return res.redirect(`/login?error=${fail}`);
@@ -125,33 +131,33 @@ class Controller {
     }
   }
 
-static async profilePage(req, res) {
+  static async profilePage(req, res) {
     try {
       const userId = req.session.userId;
       const user = await User.findByPk(userId, {
-        include: Profile
+        include: Profile,
       });
 
-      res.render('profile', { user });
+      res.render("profile", { user });
     } catch (error) {
       console.log(error);
       res.send(error);
     }
-  }//done
+  } //done
 
   static async editProfileForm(req, res) {
     try {
       const userId = req.session.userId;
       const user = await User.findByPk(userId, {
-        include: Profile
+        include: Profile,
       });
 
-      res.render('editProfile', { user });
+      res.render("editProfile", { user });
     } catch (error) {
       console.log(error);
       res.send(error);
     }
-  }//done
+  } //done
 
   static async saveEditProfile(req, res) {
     try {
@@ -159,10 +165,7 @@ static async profilePage(req, res) {
       const { name, email, phone, birthDate } = req.body;
 
       // Update Users table
-      await User.update(
-        { name },
-        { where: { id: userId } }
-      );
+      await User.update({ name }, { where: { id: userId } });
 
       // Update Profiles table
       await Profile.update(
@@ -170,13 +173,13 @@ static async profilePage(req, res) {
         { where: { UserId: userId } }
       );
 
-      res.redirect('/profile');
+      res.redirect("/profile");
     } catch (error) {
       console.log(error);
       res.send(error);
     }
-  }//blm bisa ke save
-  
+  } //blm bisa ke save
+
   static async test(req, res) {
     try {
       res.render("test");
@@ -215,7 +218,7 @@ static async profilePage(req, res) {
           },
         }
       );
-      res.redirect('/products')
+      res.redirect("/products");
     } catch (error) {
       console.log(error);
       res.send(error);
@@ -224,17 +227,27 @@ static async profilePage(req, res) {
 
   static async deleteProduct(req, res) {
     try {
-      const id = req.params.id
+      const id = req.params.id;
       // console.log(id);
       await Product.destroy({
         where: {
-          id: +id
-        }
-      })
-      res.redirect('/products')
+          id: +id,
+        },
+      });
+      res.redirect("/products");
     } catch (error) {
       console.log(error);
-      res.send(error)
+      res.send(error);
+    }
+  }
+
+  static async productsForBuyer(req, res) {
+    try {
+      let product = await Product.findAll();
+      res.render("listProductBuyer", { product });
+    } catch (error) {
+      console.log(error);
+      res.send(error);
     }
   }
 }

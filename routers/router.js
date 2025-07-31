@@ -33,7 +33,7 @@ router.get('/profile', Controller.profilePage);
 router.get('/profile/edit', Controller.editProfileForm);
 router.post('/profile/edit', Controller.saveEditProfile);
 
-router.get('/products', Controller.listAllProducts)
+router.get('/products', Controller.productsForBuyer)
 router.get('/products/add', Controller.addProductsItems)
 router.post('/products/add', Controller.saveProductsItems)
 router.get('/products/:id', Controller.detailProduct)
