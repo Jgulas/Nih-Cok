@@ -38,6 +38,7 @@ router.get('/products/add', Controller.addProductsItems)
 router.post('/products/add', Controller.saveProductsItems)
 router.get('/products/:id', Controller.detailProduct)
 router.post('/products/:id', Controller.saveDetailProduct)
+router.get('/products/delete/:id', Controller.deleteProduct)
 
 
 module.exports = router;
