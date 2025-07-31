@@ -7,6 +7,15 @@ class Controller {
     }
   }
 
+  static registerForm(req, res) {
+    try {
+      res.render('/register')
+    } catch (error) {
+      console.log(error);
+      res.send(error);
+    }
+  }
+
   static listAllProducts(req, res) {
     try {
     } catch (error) {

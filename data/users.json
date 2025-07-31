@@ -2,13 +2,13 @@
   {
     "id": 1,
     "name": "Admin Satu",
-    "email": "admin@mail.com",
-    "password": "hashedpassword123"
+    "password": "hashedpassword123",
+    "role": "admin"
   },
   {
     "id": 2,
     "name": "Customer Dua",
-    "email": "customer@mail.com",
-    "password": "hashedpassword456"
+    "password": "hashedpassword456",
+    "role": "customer"
   }
 ]

@@ -4,13 +4,13 @@
     "UserId": 1,
     "phone": "08123456789",
     "birthDate": "1990-01-01",
-    "role": "customer"
+    "email": "admin@mail.com"
   },
   {
     "id": 2,
     "UserId": 2,
     "phone": "08198765432",
     "birthDate": "1995-05-15",
-    "role": "admin"
+    "email": "customer@mail.com"
   }
 ]
