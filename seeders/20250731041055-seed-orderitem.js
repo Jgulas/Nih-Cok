@@ -34,7 +34,7 @@ module.exports = {
     await queryInterface.bulkDelete('OrderItems', null, {
       truncate: true,
       restartIdentity: true,
-      cacade: true
+      cascade: true
     })
   }
 };
