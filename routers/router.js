@@ -33,5 +33,7 @@ router.get('/products', Controller.listAllProducts)
 router.get('/products/add', Controller.addProductsItems)
 router.post('/products/add', Controller.saveProductsItems)
 router.get('/products/:id', Controller.detailProduct)
+router.post('/products/:id', Controller.saveDetailProduct)
+
 
 module.exports = router;
