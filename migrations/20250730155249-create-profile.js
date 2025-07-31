@@ -15,7 +15,7 @@ module.exports = {
       birthDate: {
         type: Sequelize.DATE
       },
-      role: {
+      email: {
         type: Sequelize.STRING
       },
       UserId: {
