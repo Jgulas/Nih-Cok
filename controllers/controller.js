@@ -42,6 +42,7 @@ class Controller {
 
             if(isValidPassword){
               req.session.userId = user.id;
+              req.session.userRole = user.role;
               return res.redirect('/main');
             } else {
               const fail = "Invalid Usernam/Password"
@@ -76,13 +77,13 @@ class Controller {
       //   res.redirect('/login')
       // })
       // res.render('/register')
-      await User.create({
-      name,
-      password,
-      role
-    });
+        await User.create({
+        name,
+        password,
+        role
+      });
 
-    return res.redirect('/login');
+      return res.redirect('/login');
     } catch (error) {
       console.log(error);
       res.send(error);
@@ -91,6 +92,8 @@ class Controller {
 
   static async listAllProducts(req, res) {
     try {
+      const products = await Product.findAll();
+      res.render('productList', {products})
     } catch (error) {
       console.log(error);
       req.send(error);
@@ -99,6 +102,7 @@ class Controller {
 
   static async addProductsItems(req, res) {
     try {
+      res.render('addProduct')
     } catch (error) {
       console.log(error);
       req.send(error);

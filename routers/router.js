@@ -1,7 +1,10 @@
 const express = require('express');
 const Controller = require('../controllers/controller');
+const { isLoggedIn,isAdmin } = require('../helpers/helper')
 const router = express.Router();
 
+// landing page
+router.get('/', Controller.home);
 // GET REGISTER
 router.get('/register', Controller.registerForm);
 // POST REGISTER 
@@ -16,19 +19,18 @@ router.post('/login', Controller.postLogin);
 //   console.log('Time:', Date.now());
 //   next();
 // };
-router.use(function(req, res, next) {
-  console.log('Time:', Date.now());
-  next();
-});// buat blokir harus login dulu
+// router.use(function(req, res, next) {
+//   console.log('Time:', Date.now());
+//   next();
+// });
+router.use(isLoggedIn);// buat blokir harus login dulu
 
-router.get('/', Controller.home);
+//Main menu
+router.get('/main', Controller.listAllProducts);
 
-
-router.get('/main', Controller.test);
-
-router.get('/products', Controller.x)
-router.get('/products/add', Controller.addProductsItems)
-router.post('/products/add', Controller.saveProductsItems)
+router.get('/products', Controller.listAllProducts)
+router.get('/products/add', isAdmin, Controller.addProductsItems)
+router.post('/products/add',isAdmin, Controller.saveProductsItems)
 router.get('/products/:id', Controller.detailProduct)
 
 module.exports = router;

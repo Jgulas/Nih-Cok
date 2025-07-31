@@ -1,20 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+  <meta charset="UTF-8">
+  <title>Nih Cok!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #3e2723; /* Coklat tua */
+      color: #f5f5dc; /* Warna krem */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 4rem;
+      margin-bottom: 0.5rem;
+      color: #ffcc80; /* Coklat terang */
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #ffe0b2;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .buttons a {
+      text-decoration: none;
+      padding: 12px 24px;
+      background-color: #6d4c41;
+      color: white;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .buttons a:hover {
+      background-color: #8d6e63;
+    }
+  </style>
 </head>
 <body>
-    <p>hi,<!-- nama user --></p> <%- include('./partials/nav.ejs') %>
-    <p style=></p>
-    <hr>
-    <h1>Nihk Chocolate</h1>
-    <hr><br>
-
-    <p>
-        Masok dulu kakak-kakak, adek-adek, ibuk-ibuk
-        <%- include('./partials/LoginReg.ejs') %>
-    </p>
+  <h1>Nih Cok!</h1>
+  <p>Cokelat premium, manisnya bikin jatuh cinta. Temukan rasa terbaik di setiap gigitan.</p>
+  <div class="buttons">
+    <a href="/login">Sign In</a>
+    <a href="/register">Sign Up</a>
+  </div>
 </body>
 </html>
