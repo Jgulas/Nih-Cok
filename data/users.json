@@ -1,13 +1,13 @@
 [
   {
     "id": 1,
-    "name": "Admin Satu",
+    "name": "AdminSatu",
     "password": "hashedpassword123",
     "role": "admin"
   },
   {
     "id": 2,
-    "name": "Customer Dua",
+    "name": "CustomerDua",
     "password": "hashedpassword456",
     "role": "customer"
   }
