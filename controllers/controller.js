@@ -164,14 +164,32 @@ class Controller {
       const userId = req.session.userId;
       const { name, email, phone, birthDate } = req.body;
 
-      // Update Users table
-      await User.update({ name }, { where: { id: userId } });
+      // // Update Users table
+      // await User.update({ name }, { where: { id: userId } });
 
-      // Update Profiles table
-      await Profile.update(
-        { email, phone, birthDate },
-        { where: { UserId: userId } }
-      );
+      // // Update Profiles table
+      // await Profile.update(
+      //   { email, phone, birthDate },
+      //   { where: { UserId: userId } }
+      // );
+      const existingProfile = await Profile.findOne({ where: { UserId: userId } });
+
+      if (existingProfile) {
+        // Sudah ada, tinggal update
+        await Profile.update(
+          { email, phone, birthDate },
+          { where: { UserId: userId } }
+        );
+      } else {
+        // Belum ada, maka buat baru
+        await Profile.create({
+          UserId: userId,
+          email,
+          phone,
+          birthDate
+        });
+      }
+
 
       res.redirect("/profile");
     } catch (error) {
