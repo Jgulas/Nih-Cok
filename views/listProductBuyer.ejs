@@ -36,6 +36,7 @@
         color: white;
         padding: 10px 15px;
         border-radius: 5px;
+        white-space: nowrap;
       }
 
       .add-button a:hover {
@@ -92,10 +93,6 @@
     <div class="container">
       <h1>List Product</h1>
       <hr />
-      <br />
-      <div class="add-button">
-        <a href="/products/add">Add Product</a>
-      </div>
 
       <table>
         <thead>
@@ -124,8 +121,7 @@
               />
             </td>
             <td class="action-buttons">
-              <a href="/products/<%= el.id %>">Edit</a><br /><br />
-              <a href="/products/delete/<%= el.id %>">Delete</a>
+              <a href="/products/<%= el.id %>">Cart</a>
             </td>
           </tr>
           <% }) %>
