@@ -1,12 +1,13 @@
 const express = require('express')
 const app = express()
 const port = 3000
-const router = ('./routers/router.js')
+const router = require('./routers/router.js')
 // app.get('/', (req, res) => {
 //   res.send('Hello World!')
 // })
 
 app.set('view engine', 'ejs');
+app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }));
 
 app.use(router);

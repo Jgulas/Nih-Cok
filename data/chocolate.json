@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Dark Chocolate Bar",
+    "price": 25000,
+    "stock": 100,
+    "description": "Rich and bittersweet dark chocolate made with 70% cocoa.",
+    "imageUrl": "https://shorturl.at/GX6ZW"
+  },
+  {
+    "name": "Milk Chocolate with Hazelnuts",
+    "price": 30000,
+    "stock": 50,
+    "description": "Creamy milk chocolate packed with crunchy hazelnuts.",
+    "imageUrl": "https://shorturl.at/Obdv4"
+  },
+  {
+    "name": "White Chocolate Truffles",
+    "price": 40000,
+    "stock": 30,
+    "description": "Smooth white chocolate truffles with a creamy center.",
+    "imageUrl": "https://shorturl.at/AObZS"
+  },
+  {
+    "name": "Matcha Chocolate Bites",
+    "price": 35000,
+    "stock": 70,
+    "description": "A fusion of matcha green tea and white chocolate.",
+     "imageUrl": "https://shorturl.at/suro5"
+  },
+  {
+    "name": "Spicy Chili Chocolate",
+    "price": 27000,
+    "stock": 40,
+    "description": "Dark chocolate with a bold kick of chili spice.",
+    "imageUrl": "https://rb.gy/fg18i4"
+  }
+]
