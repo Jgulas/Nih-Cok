@@ -91,6 +91,9 @@ class Controller {
 
   static async listAllProducts(req, res) {
     try {
+      let produk = Product.findAll()
+      console.log(produk);
+      
     } catch (error) {
       console.log(error);
       req.send(error);
@@ -129,9 +132,12 @@ class Controller {
       res.send(error);
     }
   }
-  static async x(req, res) {
+  static async listAllProducts(req, res) {
     try {
-      res.send('x')
+      let product = await Product.findAll()
+      console.log(product);
+      res.render('listProduct', {product})
+      
     } catch (error) {
       console.log(error);
       res.send(error);

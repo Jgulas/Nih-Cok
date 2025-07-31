@@ -25,8 +25,9 @@ router.get('/', Controller.home);
 
 
 router.get('/main', Controller.test);
+// router.get('/product/edit')
 
-router.get('/products', Controller.x)
+router.get('/products', Controller.listAllProducts)
 router.get('/products/add', Controller.addProductsItems)
 router.post('/products/add', Controller.saveProductsItems)
 router.get('/products/:id', Controller.detailProduct)
