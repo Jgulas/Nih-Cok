@@ -10,6 +10,17 @@
 
   <div style="max-width: 600px; margin: 40px auto; background-color: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
     <h2 style="text-align: center; color: #333;">Profil Saya</h2>
+    <% if (!user.Profile) { %>
+
+  <p><em>Profil belum dibuat. Silakan buat terlebih dahulu.</em></p>
+  <div style="text-align: center; margin-top: 20px;">
+    <a href="/profile/add">
+      <button style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer;">
+        ➕ Buat Profil
+      </button>
+    </a>
+  </div>
+<% } else { %>
     <p><strong>Nama:</strong> <%= user.name %></p>
     <p><strong>Role:</strong> <%= user.role %></p>
 
@@ -29,6 +40,6 @@
       </a>
     </div>
   </div>
-
+<% } %>
 </body>
 </html>

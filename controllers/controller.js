@@ -34,7 +34,6 @@ class Controller {
             UserId: user.id,
           },
         });
-        // console.log(userProfile, 'iniuseer profile');
 
         if (user) {
           const isValidPassword = bcrypt.compareSync(password, user.password);
@@ -60,7 +59,7 @@ class Controller {
       console.log(error);
       res.send(error);
     }
-  } //done tinggal redirectnya
+  } //done 
 
   static async registerForm(req, res) {
     try {
@@ -150,6 +149,44 @@ class Controller {
       res.send(error);
     }
   } //done
+
+  static async showAddProfileForm(req, res) {
+    try {
+      const userId = req.session.userId;
+      if (!userId) return res.redirect('/login');
+
+      const user = await User.findByPk(userId, {
+        include: Profile
+      });
+
+      if (user.Profile) return res.redirect('/profile');
+
+      res.render('addProfile', { error: null, userId }); 
+    } catch (err) {
+      res.send(err);
+    }
+  };
+
+  static async postAddProfile(req, res) {
+    try {
+      const userId = req.session.userId;
+      if (!userId) return res.redirect('/login');
+
+      const { email, phone, birthDate } = req.body;
+
+      await Profile.create({
+        UserId: userId,
+        email,
+        phone,
+        birthDate
+      });
+
+      res.redirect('/profile'); 
+    } catch (err) {
+      console.log(err);
+      res.render('addProfile', { error: err.message, userId: req.session.userId });
+    }
+  }
 
   static async editProfileForm(req, res) {
     try {
