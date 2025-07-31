@@ -29,6 +29,10 @@ router.use(isLoggedIn);// buat blokir harus login dulu
 router.get('/main', Controller.listAllProducts);
 // router.get('/product/edit')
 
+router.get('/profile', Controller.profilePage);
+router.get('/profile/edit', Controller.editProfileForm);
+router.post('/profile/edit', Controller.saveEditProfile);
+
 router.get('/products', Controller.listAllProducts)
 router.get('/products/add', Controller.addProductsItems)
 router.post('/products/add', Controller.saveProductsItems)
