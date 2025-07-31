@@ -1,16 +1,18 @@
 [
   {
     "id": 1,
-    "orderId": 1,
-    "productId": 1,
+    "ProductId": 1,
     "quantity": 1,
-    "price": 25000
+    "price": 25000,
+    "UserProfileId": 1,
+    "status": "barang belum dibeli"
   },
   {
     "id": 2,
-    "orderId": 1,
-    "productId": 2,
+    "ProductId": 2,
     "quantity": 1,
-    "price": 15000
+    "price": 15000,
+    "UserProfileId": 1,
+    "status": "barang belum dibeli"
   }
 ]
