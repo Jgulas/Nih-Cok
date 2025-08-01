@@ -2,7 +2,7 @@
   "development": {
     "username": "postgres",
     "password": "postgres",
-    "database": "chocolate_mart_db_v5",
+    "database": "chocolate_mart_db_v6",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

@@ -61,12 +61,13 @@
     <div class="container">
       <h2>Profil Saya</h2>
 
-      <% if (!user.Profile) { %>
-        <p><em>Profil belum dibuat. Silakan buat terlebih dahulu.</em></p>
+      <% if (!user.Profile.email || !user.Profile.phone || !user.Profile.birthDate) { %>
+        <p><em>Profil belum lengkap. Silakan lengkapi terlebih dahulu.</em></p>
         <div class="button-container">
-          <a href="/profile/add">➕ Buat Profil</a>
+          <a href="/profile/edit">➕ Lengkapi Profil</a>
         </div>
       <% } else { %>
+
         <p><strong>Nama:</strong> <%= user.name %></p>
         <p><strong>Role:</strong> <%= user.role %></p>
         <p><strong>Email:</strong> <%= user.Profile.email %></p>
