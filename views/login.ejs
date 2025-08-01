@@ -67,8 +67,12 @@
   <%- include('./partials/nav.ejs') %>
 
   <h1>Login</h1>
-  <% if (error) { %>
-    <div class="error">Salah masukin nih!</div>
+  <% if (error && error.length > 0) { %>
+  <div class="error"><%= error[0] %></div>
+  <% } %>
+
+  <% if (success && success.length > 0) { %>
+    <div class="success"><%= success[0] %></div>
   <% } %>
 
   <form action="/login" method="post">

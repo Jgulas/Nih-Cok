@@ -17,48 +17,90 @@ class Controller {
 
   static async loginForm(req, res) {
     try {
-      const { error } = req.query;
-      res.render("login", { error });
+      // const { error } = req.query;
+      res.render("login");//, { error }
     } catch (error) {
       console.log(error);
       res.send(error);
     }
   } //done
 
+  // static async postLogin(req, res) {
+  //   try {
+  //     const { name, password } = req.body;
+  //     User.findOne({ where: { name } }).then(async (user) => {
+  //       let userProfile = await Profile.findOne({
+  //         where: {
+  //           UserId: user.id,
+  //         },
+  //       });
+
+  //       if (!user){
+  //         // const fail = "Invalid Usernam/Password";
+  //         // return res.redirect(`/login?error=${fail}`);
+  //         req.flash('error', 'Username / Password salah');
+  //         return res.redirect('/login');
+  //       }
+
+  //       else if (user) {
+  //         const isValidPassword = bcrypt.compareSync(password, user.password);
+
+  //         if (isValidPassword) {
+  //           req.session.userId = user.id;
+  //           req.session.userRole = user.role;
+  //           if (user.role === "admin") {
+  //             return res.redirect("/main");
+  //           } else {
+  //             return res.redirect(`/product-list/${userProfile.id}`);
+  //           }
+  //         } else {
+  //           // const fail = "Invalid Usernam/Password";
+  //           // return res.redirect(`/login?error=${fail}`);
+  //           req.flash('error', 'Username / Password salah');
+  //           return res.redirect('/login');
+
+  //         }
+  //       } 
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //     res.send(error);
+  //   }
+  // } //done 
+
   static async postLogin(req, res) {
     try {
       const { name, password } = req.body;
-      User.findOne({ where: { name } }).then(async (user) => {
-        let userProfile = await Profile.findOne({
-          where: {
-            UserId: user.id,
-          },
-        });
 
-        if (user) {
-          const isValidPassword = bcrypt.compareSync(password, user.password);
+      const user = await User.findOne({ where: { name } });
 
-          if (isValidPassword) {
-            req.session.userId = user.id;
-            req.session.userRole = user.role;
-            if (user.role === "admin") {
-              return res.redirect("/main");
-            } else {
-              return res.redirect(`/product-list/${userProfile.id}`);
-            }
-          } else {
-            const fail = "Invalid Usernam/Password";
-            return res.redirect(`/login?error=${fail}`);
-          }
-        } else {
-          const fail = "Invalid Usernam/Password";
-          return res.redirect(`/login?error=${fail}`);
-        }
+      if (!user) {
+        req.flash('error', 'Username / Password salah');
+        return res.redirect('/login');
+      }
+
+      const isValidPassword = bcrypt.compareSync(password, user.password);
+      if (!isValidPassword) {
+        req.flash('error', 'Username / Password salah');
+        return res.redirect('/login');
+      }
+
+      const userProfile = await Profile.findOne({
+        where: {
+          UserId: user.id,
+        },
       });
+
+      req.session.userId = user.id;
+      req.session.userRole = user.role;
+
+    
+      return res.redirect(`/product-list/${userProfile.id}`);
     } catch (error) {
       console.log(error);
       res.send(error);
     }
+  }
   } //done
 
   static async registerForm(req, res) {
