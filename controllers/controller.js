@@ -101,7 +101,7 @@ class Controller {
       res.send(error);
     }
   }
-  } //done
+  //done
 
   static async registerForm(req, res) {
     try {
@@ -120,10 +120,24 @@ class Controller {
       //   res.redirect('/login')
       // })
       // res.render('/register')
-      await User.create({
+
+      // await User.create({
+      //   name,
+      //   password,
+      //   role,
+      // }); // main
+
+      const newUser = await User.create({
         name,
         password,
         role,
+      });
+
+      await Profile.create({
+        UserId: newUser.id,
+        phone: null,
+        birthDate: null,
+        email: null
       });
 
       return res.redirect("/login");
