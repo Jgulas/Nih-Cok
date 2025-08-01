@@ -154,6 +154,17 @@ class Controller {
 
   static async saveProductsItems(req, res) {
     try {
+      const body = req.body
+      // console.log(body);
+      await Product.create({
+        name: body.name,
+        price: body.price,
+        stock: body.stock,
+        description: body.description,
+        imageUrl: body.imageUrl
+      })
+
+      res.redirect('/main')
     } catch (error) {
       console.log(error);
       req.send(error);
@@ -353,7 +364,7 @@ class Controller {
           },
         }
       );
-      res.redirect("/products");
+      res.redirect("/main");
     } catch (error) {
       console.log(error);
       res.send(error);
@@ -369,7 +380,7 @@ class Controller {
           id: +id,
         },
       });
-      res.redirect("/products");
+      res.redirect("/main");
     } catch (error) {
       console.log(error);
       res.send(error);
@@ -425,7 +436,7 @@ class Controller {
         }
       );
 
-      res.render("history", { order });
+      res.render("history", { order, id });
     } catch (error) {
       console.log(error);
       res.send(error);
