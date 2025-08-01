@@ -94,15 +94,14 @@ class Controller {
       req.session.userId = user.id;
       req.session.userRole = user.role;
 
-      // Kalau kamu udah gak pakai role logic, cukup redirect ke halaman utama
+    
       return res.redirect(`/product-list/${userProfile.id}`);
     } catch (error) {
       console.log(error);
       res.send(error);
     }
   }
-  
-  
+  } //done
 
   static async registerForm(req, res) {
     try {
@@ -186,34 +185,52 @@ class Controller {
         include: Profile,
       });
 
-      res.render("profile", { user });
+      const newUser = {
+        ...user.dataValues,
+        Profile: {
+          ...user.dataValues.Profile.dataValues,
+          birthDate: Controller.formatDateLocal(
+            user.dataValues.Profile.birthDate
+          ),
+        },
+      };
+      
+      res.render("profile", { user: newUser });
     } catch (error) {
       console.log(error);
       res.send(error);
     }
   } //done
 
+  static formatDateLocal(date) {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
   static async showAddProfileForm(req, res) {
     try {
       const userId = req.session.userId;
-      if (!userId) return res.redirect('/login');
+      if (!userId) return res.redirect("/login");
 
       const user = await User.findByPk(userId, {
-        include: Profile
+        include: Profile,
       });
 
-      if (user.Profile) return res.redirect('/profile');
+      if (user.Profile) return res.redirect("/profile");
 
-      res.render('addProfile', { error: null, userId }); 
+      res.render("addProfile", { error: null, userId });
     } catch (err) {
       res.send(err);
     }
-  };
+  }
 
   static async postAddProfile(req, res) {
     try {
       const userId = req.session.userId;
-      if (!userId) return res.redirect('/login');
+      if (!userId) return res.redirect("/login");
 
       const { email, phone, birthDate } = req.body;
 
@@ -221,13 +238,16 @@ class Controller {
         UserId: userId,
         email,
         phone,
-        birthDate
+        birthDate,
       });
 
-      res.redirect('/profile'); 
+      res.redirect("/profile");
     } catch (err) {
       console.log(err);
-      res.render('addProfile', { error: err.message, userId: req.session.userId });
+      res.render("addProfile", {
+        error: err.message,
+        userId: req.session.userId,
+      });
     }
   }
 
@@ -238,7 +258,17 @@ class Controller {
         include: Profile,
       });
 
-      res.render("editProfile", { user });
+      const newUser = {
+        ...user.dataValues,
+        Profile: {
+          ...user.dataValues.Profile.dataValues,
+          birthDate: Controller.formatDateLocal(
+            user.dataValues.Profile.birthDate
+          ),
+        },
+      };
+
+      res.render("editProfile", { user: newUser });
     } catch (error) {
       console.log(error);
       res.send(error);
@@ -258,7 +288,9 @@ class Controller {
       //   { email, phone, birthDate },
       //   { where: { UserId: userId } }
       // );
-      const existingProfile = await Profile.findOne({ where: { UserId: userId } });
+      const existingProfile = await Profile.findOne({
+        where: { UserId: userId },
+      });
 
       if (existingProfile) {
         // Sudah ada, tinggal update
@@ -272,10 +304,9 @@ class Controller {
           UserId: userId,
           email,
           phone,
-          birthDate
+          birthDate,
         });
       }
-
 
       res.redirect("/profile");
     } catch (error) {
@@ -393,9 +424,8 @@ class Controller {
           },
         }
       );
-      console.log(order);
 
-      res.render("history", {order});
+      res.render("history", { order });
     } catch (error) {
       console.log(error);
       res.send(error);

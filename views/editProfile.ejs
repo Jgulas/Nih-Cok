@@ -52,7 +52,7 @@
       <input type="text" name="phone" id="phone" value="<%= user.Profile?.phone || '' %>"><br><br>
 
       <label for="birthDate">Tanggal Lahir:</label><br>
-      <input type="date" name="birthDate" id="birthDate" value="<%= user.Profile?.birthDate?.toISOString().split('T')[0] || '' %>>"><br><br>
+      <input type="date" name="birthDate" id="birthDate" value="<%= user.Profile?.birthDate %>"><br><br>
 
       <button type="submit">Simpan Perubahan</button>
     </form>

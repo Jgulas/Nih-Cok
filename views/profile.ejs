@@ -1,45 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Profil Saya</title>
-</head>
-<body style="background-color: #f9f9f9; font-family: sans-serif; margin: 0; padding: 0;">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Profil Saya</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        background-color: #fdf6f0;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
 
-  <%- include('./partials/nav') %>
+      .container {
+        width: 90%;
+        max-width: 600px;
+        margin: 40px auto;
+        background-color: #fff3e6;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
 
-  <div style="max-width: 600px; margin: 40px auto; background-color: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
-    <h2 style="text-align: center; color: #333;">Profil Saya</h2>
-    <% if (!user.Profile) { %>
+      h2 {
+        text-align: center;
+        color: #5c3210;
+      }
 
-  <p><em>Profil belum dibuat. Silakan buat terlebih dahulu.</em></p>
-  <div style="text-align: center; margin-top: 20px;">
-    <a href="/profile/add">
-      <button style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer;">
-        ➕ Buat Profil
-      </button>
-    </a>
-  </div>
-<% } else { %>
-    <p><strong>Nama:</strong> <%= user.name %></p>
-    <p><strong>Role:</strong> <%= user.role %></p>
+      p {
+        color: #333;
+        margin: 10px 0;
+      }
 
-    <% if (user.Profile) { %>
-      <p><strong>Email:</strong> <%= user.Profile.email %></p>
-      <p><strong>No HP:</strong> <%= user.Profile.phone %></p>
-      <p><strong>Tanggal Lahir:</strong> <%= user.Profile.birthDate %></p>
-    <% } else { %>
-      <p><em>Lengkapi Data dirimu</em></p>
-    <% } %>
+      em {
+        color: #888;
+      }
 
-    <div style="text-align: center; margin-top: 20px;">
-      <a href="/profile/edit">
-        <button style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 6px; cursor: pointer;">
-          ✏️ Edit Profil
-        </button>
-      </a>
+      .button-container {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .button-container a {
+        text-decoration: none;
+        background-color: #8b4513;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 6px;
+        display: inline-block;
+      }
+
+      .button-container a:hover {
+        background-color: #5c3210;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('./partials/nav') %>
+
+    <div class="container">
+      <h2>Profil Saya</h2>
+
+      <% if (!user.Profile) { %>
+        <p><em>Profil belum dibuat. Silakan buat terlebih dahulu.</em></p>
+        <div class="button-container">
+          <a href="/profile/add">➕ Buat Profil</a>
+        </div>
+      <% } else { %>
+        <p><strong>Nama:</strong> <%= user.name %></p>
+        <p><strong>Role:</strong> <%= user.role %></p>
+        <p><strong>Email:</strong> <%= user.Profile.email %></p>
+        <p><strong>No HP:</strong> <%= user.Profile.phone %></p>
+        <p><strong>Tanggal Lahir:</strong> <%= user.Profile.birthDate %></p>
+
+        <div class="button-container">
+          <a href="/profile/edit">✏️ Edit Profil</a>
+        </div>
+      <% } %>
     </div>
-  </div>
-<% } %>
-</body>
+  </body>
 </html>
